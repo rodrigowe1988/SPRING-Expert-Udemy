@@ -1,0 +1,31 @@
+package com.example.vendas.repositories;
+
+import com.example.vendas.entities.Cliente;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
+
+    //Consulta usando o @Query
+    @Query(value = "select c from Cliente c where c.nome like :nome")
+    List<Cliente> encontrarPorNome(@Param("nome") String nome);
+
+    //ou como query nativa do sql
+    @Query(value = "select c from Cliente c where c.nome like :nome", nativeQuery = true)
+    List<Cliente> encontrarPorNomeNativa(@Param("nome") String nome);
+
+    //Consultas via @Query Methods
+    List<Cliente> findByNomeLike(String nome);
+
+    @Query("delete from Cliente c where c.nome =:nome")
+    @Modifying
+    void deleteByNome(String nome);
+
+    boolean existsByNome(String nome);
+}

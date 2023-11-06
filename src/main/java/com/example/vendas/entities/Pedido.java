@@ -1,14 +1,34 @@
 package com.example.vendas.entities;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.Instant;
+import java.util.List;
 
 @Data
-public class Pedido {
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "pedidos")
+public class Pedido implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    private LocalDate dataPedido;
+    @Column(name = "data_pedido")
+    private Instant dataPedido;
+    @Column(name = "total", length = 20, precision = 2)
     private BigDecimal total;
+
+    @OneToMany
+    private List<ItemPedido> pedidos;
 }
