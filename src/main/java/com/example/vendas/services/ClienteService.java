@@ -2,6 +2,8 @@ package com.example.vendas.services;
 
 import com.example.vendas.entities.Cliente;
 import com.example.vendas.repositories.ClienteRepository;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +23,9 @@ public class ClienteService {
 
     public void deleteByName(String nome) {
         repository.deleteByNome("Aline Maria");
+    }
+
+    public void delete(Integer id) {
+        repository.deleteById(id);
     }
 }

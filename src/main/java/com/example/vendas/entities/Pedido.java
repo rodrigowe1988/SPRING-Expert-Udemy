@@ -26,7 +26,7 @@ public class Pedido implements Serializable {
     private Cliente cliente;
     @Column(name = "data_pedido")
     private Instant dataPedido;
-    @Column(name = "total", length = 20, precision = 2)
+    @Column(name = "total", scale = 2, precision = 20)
     private BigDecimal total;
 
     @OneToMany

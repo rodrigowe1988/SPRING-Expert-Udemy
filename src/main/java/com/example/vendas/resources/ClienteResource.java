@@ -2,6 +2,7 @@ package com.example.vendas.resources;
 
 import com.example.vendas.entities.Cliente;
 import com.example.vendas.services.ClienteService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,4 +29,11 @@ public class ClienteResource {
         service.deleteByName(nome);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
+

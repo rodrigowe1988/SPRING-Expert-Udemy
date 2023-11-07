@@ -15,6 +15,10 @@ public class PedidoResource {
 
     private PedidoService service;
 
+    public PedidoResource(PedidoService service) {
+        this.service = service;
+    }
+
     @GetMapping
     public ResponseEntity<List<Pedido>> findAll() {
         List<Pedido> list = service.findAll();
