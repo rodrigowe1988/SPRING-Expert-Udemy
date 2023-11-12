@@ -20,6 +20,8 @@ public class Produto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descricao;
-    @Column(name = "preco_unitario", length = 20, precision = 2)
+    @Column(name = "preco_unitario")
     private BigDecimal precoUnitario;
+
+    public Produto(Produto produto) {}
 }

@@ -1,12 +1,10 @@
 package com.example.vendas.resources;
 
-import ch.qos.logback.core.net.server.Client;
 import com.example.vendas.entities.Cliente;
 import com.example.vendas.services.ClienteService;
-import jakarta.websocket.server.PathParam;
-import org.apache.coyote.Response;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,45 +33,31 @@ public class ClienteResource {
         if(cliente.isPresent()) {
             return ResponseEntity.ok(cliente.get());
         }
-
         return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/nome")
     public ResponseEntity<List<Cliente>> getClienteByNome(@RequestParam String nome) {
         List<Cliente> cliente = service.findByNome(nome);
-
         return ResponseEntity.ok().body(cliente);
     }
 
     @PostMapping
-    @ResponseBody
     public ResponseEntity save(@RequestBody Cliente cliente) {
-        Cliente clienteSalvo = service.insert(cliente);
-        return ResponseEntity.ok().body(clienteSalvo);
+        service.insert(cliente);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/{id}")
-    @ResponseBody
     public ResponseEntity update(@PathVariable Integer id, @RequestBody Cliente cliente) {
-        return service.findById(id).map( clienteExistente -> {
-            cliente.setId(clienteExistente.getId());
-            service.save(cliente);
-            return ResponseEntity.ok().body(cliente);
-        }).orElseGet(() -> ResponseEntity.notFound().build());
+        service.update(id, cliente);
+        return ResponseEntity.ok().body(cliente);
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
-        Optional<Cliente> cliente = service.findById(id);
-        if (cliente.isPresent()) {
-            service.delete(id);
-            return ResponseEntity.noContent().build();
-
-        }else  {
-            System.out.println("Cliente com id " + id + " não encontrado!");
-            return ResponseEntity.notFound().build();
-        }
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/busca-geral")
