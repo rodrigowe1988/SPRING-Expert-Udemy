@@ -1,11 +1,11 @@
 package com.example.vendas.resources;
 
+import com.example.vendas.dto.PedidoDTO;
 import com.example.vendas.entities.Pedido;
 import com.example.vendas.services.PedidoService;
+import com.example.vendas.services.impl.PedidoServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import java.util.List;
 @RequestMapping(value = "/pedidos")
 public class PedidoResource {
 
-    private PedidoService service;
+    private PedidoServiceImpl service;
 
-    public PedidoResource(PedidoService service) {
+    public PedidoResource(PedidoServiceImpl service) {
         this.service = service;
     }
 
@@ -23,5 +23,11 @@ public class PedidoResource {
     public ResponseEntity<List<Pedido>> findAll() {
         List<Pedido> list = service.findAll();
         return ResponseEntity.ok().body(list);
+    }
+
+    @PostMapping
+    public Integer save(@RequestBody PedidoDTO dto) {
+        Pedido pedido = service.salvar(dto);
+        return pedido.getId();
     }
 }

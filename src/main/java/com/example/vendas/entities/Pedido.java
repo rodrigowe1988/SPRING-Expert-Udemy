@@ -21,14 +21,17 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
     @Column(name = "data_pedido")
     private Instant dataPedido;
+
     @Column(name = "total", scale = 2, precision = 20)
     private BigDecimal total;
 
-    @OneToMany
+    @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> pedidos;
 }
