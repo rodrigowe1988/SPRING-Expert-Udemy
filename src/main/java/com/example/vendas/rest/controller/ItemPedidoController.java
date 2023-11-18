@@ -1,4 +1,4 @@
-package com.example.vendas.resources;
+package com.example.vendas.rest.controller;
 
 import com.example.vendas.entities.ItemPedido;
 import com.example.vendas.services.ItemPedidoService;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/itens_pedidos")
-public class ItemPedidoResource {
+public class ItemPedidoController {
 
     private ItemPedidoService service;
 

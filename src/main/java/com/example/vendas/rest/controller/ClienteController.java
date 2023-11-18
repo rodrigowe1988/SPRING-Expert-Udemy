@@ -1,4 +1,4 @@
-package com.example.vendas.resources;
+package com.example.vendas.rest.controller;
 
 import com.example.vendas.entities.Cliente;
 import com.example.vendas.services.ClienteService;
@@ -13,11 +13,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/clientes")
-public class ClienteResource {
+public class ClienteController {
 
     private ClienteService service;
 
-    public ClienteResource(ClienteService service) {
+    public ClienteController(ClienteService service) {
         this.service = service;
     }
 

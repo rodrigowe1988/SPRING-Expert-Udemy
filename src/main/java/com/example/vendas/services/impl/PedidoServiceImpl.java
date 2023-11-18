@@ -1,7 +1,7 @@
 package com.example.vendas.services.impl;
 
-import com.example.vendas.dto.ItemPedidoDTO;
-import com.example.vendas.dto.PedidoDTO;
+import com.example.vendas.rest.dto.ItemPedidoDTO;
+import com.example.vendas.rest.dto.PedidoDTO;
 import com.example.vendas.entities.Cliente;
 import com.example.vendas.entities.ItemPedido;
 import com.example.vendas.entities.Pedido;
@@ -40,7 +40,7 @@ public class PedidoServiceImpl implements PedidoService {
         Integer idCliente = dto.getCliente();
         Cliente cliente = clienteRepository
                 .findById(idCliente)
-                .orElseThrow(() -> new RegraNegocioException("Código de cliente inválido " + idCliente));
+                .orElseThrow(() -> new RegraNegocioException(idCliente + " é um id inválido de cliente."));
         Pedido pedido = new Pedido();
         pedido.setTotal(dto.getTotal());
         pedido.setDataPedido(Instant.now());
@@ -53,6 +53,11 @@ public class PedidoServiceImpl implements PedidoService {
         return pedido;
     }
 
+    @Override
+    public Pedido obterPedidoCompleto(Integer id) {
+        return null;
+    }
+
     private List<ItemPedido> converterItens(Pedido pedido, List<ItemPedidoDTO> items) {
         if(items.isEmpty()) {
             throw new RegraNegocioException("Não é possível realizar um pedido sem itens!");
@@ -63,7 +68,7 @@ public class PedidoServiceImpl implements PedidoService {
                     Integer idProduto = dto.getProduto();
                     Produto produto = produtoRepository
                             .findById(idProduto)
-                            .orElseThrow(() -> new RegraNegocioException("Código de produto inválido! " + idProduto));
+                            .orElseThrow(() -> new RegraNegocioException(idProduto + " é um id inválido de produto."));
                     ItemPedido itemPedido = new ItemPedido();
                     itemPedido.setQuantidade(dto.getQuantidade());
                     itemPedido.setPedido(pedido);

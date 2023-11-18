@@ -1,4 +1,4 @@
-package com.example.vendas.resources;
+package com.example.vendas.rest.controller;
 
 import com.example.vendas.entities.Produto;
 import com.example.vendas.services.ProdutoService;
@@ -11,11 +11,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/produtos")
-public class ProdutoResource {
+public class ProdutoController {
 
     private ProdutoService service;
 
-    public ProdutoResource(ProdutoService service) {
+    public ProdutoController(ProdutoService service) {
         this.service = service;
     }
 
