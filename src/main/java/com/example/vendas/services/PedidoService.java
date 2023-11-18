@@ -4,6 +4,7 @@ import com.example.vendas.rest.dto.PedidoDTO;
 import com.example.vendas.entities.Pedido;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PedidoService {
 
@@ -11,5 +12,5 @@ public interface PedidoService {
 
     Pedido salvar(PedidoDTO dto) ;
 
-    Pedido obterPedidoCompleto(Integer id);
+    Optional<Pedido> obterPedidoCompleto(Integer id);
 }
