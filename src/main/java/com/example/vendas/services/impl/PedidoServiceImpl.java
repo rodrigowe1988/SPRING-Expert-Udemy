@@ -1,5 +1,6 @@
 package com.example.vendas.services.impl;
 
+import com.example.vendas.enums.StatusPedido;
 import com.example.vendas.rest.dto.ItemPedidoDTO;
 import com.example.vendas.rest.dto.PedidoDTO;
 import com.example.vendas.entities.Cliente;
@@ -46,6 +47,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setTotal(dto.getTotal());
         pedido.setDataPedido(Instant.now());
         pedido.setCliente(cliente);
+        pedido.setStatus(StatusPedido.REALIZADO);
 
         List<ItemPedido> itensPedido = converterItens(pedido, dto.getItems());
         pedidoRepository.save(pedido);

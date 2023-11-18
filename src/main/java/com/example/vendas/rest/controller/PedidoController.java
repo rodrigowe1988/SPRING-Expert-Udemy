@@ -49,6 +49,11 @@ public class PedidoController {
                         new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado para o id " + id));
     }
 
+    @PatchMapping
+    public void updateStatus() {
+
+    }
+
     private InformacoesPedidoDTO converter(Pedido pedido) {
         return InformacoesPedidoDTO
                 .builder()
@@ -57,6 +62,7 @@ public class PedidoController {
                 .cpf(pedido.getCliente().getCpf())
                 .nomeCliente(pedido.getCliente().getNome())
                 .total(pedido.getTotal())
+                .status(pedido.getStatus().name())
                 .items(converter(pedido.getPedidos()))
                 .build();
     }
