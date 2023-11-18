@@ -1,6 +1,7 @@
 package com.example.vendas.services.impl;
 
 import com.example.vendas.enums.StatusPedido;
+import com.example.vendas.exceptions.PedidoNaoEncontradoException;
 import com.example.vendas.rest.dto.ItemPedidoDTO;
 import com.example.vendas.rest.dto.PedidoDTO;
 import com.example.vendas.entities.Cliente;
@@ -12,7 +13,7 @@ import com.example.vendas.repositories.ItemPedidoRepository;
 import com.example.vendas.repositories.PedidoRepository;
 import com.example.vendas.repositories.ProdutoRepository;
 import com.example.vendas.services.PedidoService;
-import com.example.vendas.services.exceptions.RegraNegocioException;
+import com.example.vendas.exceptions.RegraNegocioException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +60,18 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Optional<Pedido> obterPedidoCompleto(Integer id) {
         return pedidoRepository.findByIdFetchPedidos(id);
+    }
+
+    @Override
+    @Transactional
+    public void atualizaStatus(Integer id, StatusPedido statusPedido) {
+        pedidoRepository
+                .findById(id)
+                .map(pedido -> {
+                    pedido.setStatus(statusPedido);
+                    return pedidoRepository.save(pedido);
+                }).orElseThrow(() -> new PedidoNaoEncontradoException());
+
     }
 
     private List<ItemPedido> converterItens(Pedido pedido, List<ItemPedidoDTO> items) {

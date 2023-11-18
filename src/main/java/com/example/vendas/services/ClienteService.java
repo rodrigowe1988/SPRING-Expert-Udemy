@@ -2,11 +2,10 @@ package com.example.vendas.services;
 
 import com.example.vendas.entities.Cliente;
 import com.example.vendas.repositories.ClienteRepository;
-import com.example.vendas.services.exceptions.ResourceNotFoundException;
+import com.example.vendas.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Example;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 

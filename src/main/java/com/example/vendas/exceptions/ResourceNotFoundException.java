@@ -1,4 +1,4 @@
-package com.example.vendas.services.exceptions;
+package com.example.vendas.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     private static final long serialVersionUID = 1L;

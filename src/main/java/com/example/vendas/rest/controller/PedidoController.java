@@ -1,6 +1,8 @@
 package com.example.vendas.rest.controller;
 
 import com.example.vendas.entities.ItemPedido;
+import com.example.vendas.enums.StatusPedido;
+import com.example.vendas.rest.dto.AtualizacaoStatusPedidoDTO;
 import com.example.vendas.rest.dto.InformacaoItemPedidoDTO;
 import com.example.vendas.rest.dto.InformacoesPedidoDTO;
 import com.example.vendas.rest.dto.PedidoDTO;
@@ -49,9 +51,10 @@ public class PedidoController {
                         new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado para o id " + id));
     }
 
-    @PatchMapping
-    public void updateStatus() {
-
+    @PatchMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateStatus(@PathVariable Integer id, @RequestBody AtualizacaoStatusPedidoDTO dto) {
+        service.atualizaStatus(id, StatusPedido.valueOf(dto.getNovoStatus()));
     }
 
     private InformacoesPedidoDTO converter(Pedido pedido) {
