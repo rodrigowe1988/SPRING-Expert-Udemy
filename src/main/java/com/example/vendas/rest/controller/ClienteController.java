@@ -2,6 +2,7 @@ package com.example.vendas.rest.controller;
 
 import com.example.vendas.entities.Cliente;
 import com.example.vendas.services.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
@@ -43,7 +44,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity save(@RequestBody Cliente cliente) {
+    public ResponseEntity save(@RequestBody @Valid Cliente cliente) {
         service.insert(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
