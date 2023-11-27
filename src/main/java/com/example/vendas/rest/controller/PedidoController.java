@@ -8,6 +8,7 @@ import com.example.vendas.rest.dto.InformacoesPedidoDTO;
 import com.example.vendas.rest.dto.PedidoDTO;
 import com.example.vendas.entities.Pedido;
 import com.example.vendas.services.impl.PedidoServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
@@ -37,7 +38,7 @@ public class PedidoController {
     }
 
     @PostMapping
-    public Integer save(@RequestBody PedidoDTO dto) {
+    public Integer save(@RequestBody @Valid PedidoDTO dto) {
         Pedido pedido = service.salvar(dto);
         return pedido.getId();
     }

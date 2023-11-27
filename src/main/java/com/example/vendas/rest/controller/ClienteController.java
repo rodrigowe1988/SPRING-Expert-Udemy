@@ -50,7 +50,7 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable Integer id, @RequestBody Cliente cliente) {
+    public ResponseEntity update(@PathVariable Integer id, @RequestBody @Valid Cliente cliente) {
         service.update(id, cliente);
         return ResponseEntity.ok().body(cliente);
     }

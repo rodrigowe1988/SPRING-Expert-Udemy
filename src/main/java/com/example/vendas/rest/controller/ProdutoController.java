@@ -2,6 +2,7 @@ package com.example.vendas.rest.controller;
 
 import com.example.vendas.entities.Produto;
 import com.example.vendas.services.ProdutoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,13 +36,13 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity save(@RequestBody Produto produto) {
+    public ResponseEntity save(@RequestBody @Valid Produto produto) {
         service.insert(produto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable Integer id, @RequestBody Produto produto) {
+    public ResponseEntity update(@PathVariable Integer id, @RequestBody @Valid Produto produto) {
         service.update(id, produto);
         return ResponseEntity.ok().body(produto);
     }

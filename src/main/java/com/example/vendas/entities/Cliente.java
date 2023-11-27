@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.antlr.v4.runtime.misc.NotNull;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -25,6 +26,8 @@ public class Cliente implements Serializable {
     @NotEmpty(message = "Campo nome é obrigatório")
     private String nome;
 
+    @NotEmpty(message = "Campo CPF é obrigatório")
+    @CPF
     private String cpf;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
