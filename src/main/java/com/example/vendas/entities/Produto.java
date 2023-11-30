@@ -1,12 +1,12 @@
 package com.example.vendas.entities;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -21,10 +21,10 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty(message = "Campo descrição é obrigatório")
+    @NotEmpty(message = "{campo.descricao.obrigatorio}")
     private String descricao;
     @Column(name = "preco_unitario")
-    @NotNull(message = "Campo preço é obrigatório")
+    @NotNull(message = "{campo.preco.obrigatorio}")
     private BigDecimal precoUnitario;
 
     public Produto(Produto produto) {}

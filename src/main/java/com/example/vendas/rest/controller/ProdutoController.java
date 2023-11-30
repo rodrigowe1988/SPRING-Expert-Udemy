@@ -2,11 +2,11 @@ package com.example.vendas.rest.controller;
 
 import com.example.vendas.entities.Produto;
 import com.example.vendas.services.ProdutoService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 

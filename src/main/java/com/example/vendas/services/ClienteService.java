@@ -3,23 +3,21 @@ package com.example.vendas.services;
 import com.example.vendas.entities.Cliente;
 import com.example.vendas.repositories.ClienteRepository;
 import com.example.vendas.exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ClienteService {
 
-    private ClienteRepository repository;
-
-    public ClienteService(ClienteRepository repository) {
-        this.repository = repository;
-    }
+    private final ClienteRepository repository;
 
     public List<Cliente> findAll() {
         return repository.findAll();

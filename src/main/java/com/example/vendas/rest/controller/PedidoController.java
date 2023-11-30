@@ -8,15 +8,13 @@ import com.example.vendas.rest.dto.InformacoesPedidoDTO;
 import com.example.vendas.rest.dto.PedidoDTO;
 import com.example.vendas.entities.Pedido;
 import com.example.vendas.services.impl.PedidoServiceImpl;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.format.DateTimeFormatter;
-import java.util.Collection;
+import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

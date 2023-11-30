@@ -1,11 +1,11 @@
 package com.example.vendas.entities;
 
 import com.example.vendas.enums.StatusPedido;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;

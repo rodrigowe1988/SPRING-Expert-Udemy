@@ -1,13 +1,12 @@
 package com.example.vendas.entities;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -23,11 +22,11 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty(message = "Campo nome é obrigatório")
+    @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String nome;
 
-    @NotEmpty(message = "Campo CPF é obrigatório")
-    @CPF
+    @NotEmpty(message = "{campo.cpf.obrigatorio}")
+    @CPF(message = "{campo.cpf.invalido}")
     private String cpf;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
