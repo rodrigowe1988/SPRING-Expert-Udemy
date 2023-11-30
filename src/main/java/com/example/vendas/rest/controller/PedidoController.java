@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/pedidos")
+@RequestMapping(value = "/api/pedidos")
 public class PedidoController {
 
     private PedidoServiceImpl service;
