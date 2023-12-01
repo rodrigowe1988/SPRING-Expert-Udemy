@@ -1,5 +1,6 @@
-package com.example.vendas;
+package com.example.vendas.security.jwt;
 
+import com.example.vendas.VendasApplication;
 import com.example.vendas.entities.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -63,17 +64,4 @@ public class JwtService {
         return (String) obterClaims(token).getSubject();
     }
 
-    public static void main(String[] args) {
-        ConfigurableApplicationContext contexto = SpringApplication.run(VendasApplication.class);
-        JwtService service = contexto.getBean(JwtService.class);
-        Usuario usuario = Usuario.builder().login("fulano").build();
-        String token = service.gerarToken(usuario);
-        System.out.println(token);
-
-        boolean isTokenValido = service.tokenValido(token);
-        if(isTokenValido) {
-            System.out.println("O token ainda é válido");
-        }
-        System.out.println(service.obterLoginUsuario(token));
-    }
 }
