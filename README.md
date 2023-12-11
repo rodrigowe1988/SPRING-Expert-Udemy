@@ -53,3 +53,5 @@ INSERT INTO produtos (descricao,preco_unitario) values ('TV SAMSUNG 40 polegadas
 INSERT INTO produtos (descricao,preco_unitario) values ('Macbook PRO M1 MAX', 15000.0);
 INSERT INTO produtos (descricao,preco_unitario) values ('TV LG 32 polegadas', 1500.0);
 
+## Collection POSTMAN
+https://warped-resonance-943083.postman.co/workspace/Estudos~946704d4-f0cc-4cf7-ba31-2176e8857f2d/collection/20643571-51877292-1d7f-4307-a847-ee73c3db64da?action=share&creator=20643571
